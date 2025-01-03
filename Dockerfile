@@ -23,6 +23,6 @@ RUN pip install pybind11 && git clone --recursive https://github.com/cvg/DeepLSD
 
 RUN bash -c "cd DeepLSD && cd third_party/progressive-x/graph-cut-ransac/build; cmake ..; make -j8" && bash -c "cd DeepLSD && cd third_party/progressive-x/build; cmake ..; make -j8;" && bash -c "cd DeepLSD && pip install -e third_party/progressive-x" && bash -c "cd DeepLSD && cd third_party/progressive-x/graph-cut-ransac/; rm -rf build" && bash -c "cd DeepLSD && cd third_party/progressive-x/; rm -rf build" && rm -rf ~/.cache/pip
 
-RUN cd DeepLSD/third_party/afm_lib/afm_op; python3 setup.py build_ext --inplace; rm -rf build; cd ..; pip install -e .
+# RUN cd DeepLSD/third_party/afm_lib/afm_op; python3 setup.py build_ext --inplace; rm -rf build; cd ..; pip install -e .
 
-RUN cd DeepLSD && bash -c "pip install -e line_refinement" && bash -c "pip install -e third_party/homography119086_est" && bash -c "pip install -e third_party/pytlbd" && bash -c "pip install -e third_party/pytlsd" && bash -c "pip install -e ." && bash -c "pip install kornia==0.6 --no-deps" && rm -rf ~/.cache/pip
+# RUN cd DeepLSD && bash -c "pip install -e line_refinement" && bash -c "pip install -e third_party/homography119086_est" && bash -c "pip install -e third_party/pytlbd" && bash -c "pip install -e third_party/pytlsd" && bash -c "pip install -e ." && bash -c "pip install kornia==0.6 --no-deps" && rm -rf ~/.cache/pip
