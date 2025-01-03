@@ -19,4 +19,6 @@ RUN wget https://github.com/Kitware/CMake/releases/download/v3.22.0/cmake-3.22.0
 
 RUN wget https://github.com/google/glog/archive/refs/tags/v0.4.0.tar.gz && tar -xvf v0.4.0.tar.gz && cd glog-0.4.0 && cmake . -DBUILD_SHARED_LIBS=ON -DWITH_GFLAGS=ON && make -j4 && make install && cd .. && rm -rf glog-0.4.0 v0.4.0.tar.gz
 
+RUN pip install pybind11 && git clone --recursive https://github.com/cvg/DeepLSD.git --depth=1 && cd DeepLSD && git submodule init && git submodule update && pip install -r requirements.txt && pip install -r requirements.txt && rm -rf ~/.cache/pip
 
+RUN bash -c "cd DeepLSD && cd third_party/progressive-x/graph-cut-ransac/build; cmake ..; make -j8" && bash -c "cd DeepLSD && cd third_party/progressive-x/build; cmake ..; make -j8;" && bash -c "cd DeepLSD && cd third_party/progressive-x/graph-cut-ransac/; rm -rf build" && bash -c "cd DeepLSD && cd third_party/progressive-x/; rm -rf build"
