@@ -15,6 +15,6 @@ RUN ln -s /usr/include/eigen3/Eigen /usr/include/Eigen && ln -s /usr/include/eig
 
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100 && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 100
 
-RUN apt install libopencv-dev libopencv-contrib-dev libarpack++2-dev libarpack2-dev libsuperlu-dev -y --no-install-recommends
+RUN apt install python3-pip libopencv-dev libopencv-contrib-dev libarpack++2-dev libarpack2-dev libsuperlu-dev -y --no-install-recommends
 
 RUN pip install torch==1.12.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html
