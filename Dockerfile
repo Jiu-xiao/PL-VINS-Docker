@@ -7,7 +7,7 @@ LABEL description="This is a Docker Image for DeepLSD build."
 
 RUN apt update && apt upgrade -y --no-install-recommends
 
-RUN apt install wget curl git nano -y --no-install-recommends
+RUN apt install wget curl git nano -y --no-install-recommends && apt clean && apt autoclean
 
-RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py38_22.11.1-1-Linux-x86_64.sh
-RUN bash Miniconda3-py38_22.11.1-1-Linux-x86_64.sh
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py38_22.11.1-1-Linux-x86_64.sh && bash Miniconda3-py38_22.11.1-1-Linux-x86_64.sh -b && rm Miniconda3-py38_22.11.1-1-Linux-x86_64.sh
+
