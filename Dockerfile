@@ -13,7 +13,7 @@ RUN ln -s /usr/include/eigen3/Eigen /usr/include/Eigen && ln -s /usr/include/eig
 
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100 && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 100
 
-RUN pip install torch==1.12.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html && pip cache purge
+RUN pip install torch==1.12.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html && rm -rf ~/.cache/pip
 
 RUN wget https://github.com/Kitware/CMake/releases/download/v3.22.0/cmake-3.22.0.tar.gz && tar -xvf cmake-3.22.0.tar.gz && cd cmake-3.22.0 && ./bootstrap && make -j4 && make install && cd .. && rm -rf cmake-3.22.0 cmake-3.22.0.tar.gz
 
