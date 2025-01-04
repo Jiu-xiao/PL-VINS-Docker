@@ -12,6 +12,9 @@ docker run -it --gpus all ghcr.io/jiu-xiao/deeplsd-docker:main
 # Install afm
 ~/afm_install.sh
 
+# Enter DeepLSD
+cd /DeepLSD
+
 # Do your job
 ......
 ```
