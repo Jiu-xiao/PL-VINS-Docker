@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 LABEL maintainer="2592509183@qq.com"
 LABEL description="This is a Docker Image for DeepLSD build."
 
-RUN apt update && apt upgrade -y --no-install-recommends && apt install ninja-build python3.8-dev libgflags-dev python3-pip libopencv-dev openssl libssl-dev libopencv-contrib-dev libarpack++2-dev libarpack2-dev libsuperlu-dev wget curl git nano build-essential cmake libgflags-dev libunwind-dev libeigen3-dev libgflags-dev libopencv-dev gcc-9 g++-9 -y --no-install-recommends && apt clean && apt autoclean
+RUN apt update && apt upgrade -y --no-install-recommends && apt install libceres-dev ninja-build python3.8-dev libgflags-dev python3-pip libopencv-dev openssl libssl-dev libopencv-contrib-dev libarpack++2-dev libarpack2-dev libsuperlu-dev wget curl git nano build-essential cmake libgflags-dev libunwind-dev libeigen3-dev libgflags-dev libopencv-dev gcc-9 g++-9 -y --no-install-recommends && apt clean && apt autoclean
 
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py38_22.11.1-1-Linux-x86_64.sh && bash Miniconda3-py38_22.11.1-1-Linux-x86_64.sh -b && rm Miniconda3-py38_22.11.1-1-Linux-x86_64.sh
 
@@ -21,7 +21,9 @@ RUN wget https://github.com/google/glog/archive/refs/tags/v0.4.0.tar.gz && tar -
 
 RUN pip install pybind11 && git clone --recursive https://github.com/cvg/DeepLSD.git --depth=1 && cd DeepLSD && git submodule init && git submodule update && pip install -r requirements.txt && pip install -r requirements.txt && rm -rf ~/.cache/pip
 
-RUN bash -c "cd DeepLSD && cd third_party/progressive-x/graph-cut-ransac/build; cmake ..; make -j8" && bash -c "cd DeepLSD && cd third_party/progressive-x/build; cmake ..; make -j8;" && bash -c "cd DeepLSD && pip install -e third_party/progressive-x" && bash -c "cd DeepLSD && cd third_party/progressive-x/graph-cut-ransac/; rm -rf build" && bash -c "cd DeepLSD && cd third_party/progressive-x/; rm -rf build" && rm -rf ~/.cache/pip
+RUN bash -c "cd DeepLSD && cd third_party/progressive-x/graph-cut-ransac/build; cmake ..; make -j8" && bash -c "cd DeepLSD && cd third_party/progressive-x/build; cmake ..; make -j8;" && bash -c "cd DeepLSD && pip install -e third_party/progressive-x" && rm -rf ~/.cache/pip
+
+# RUN git clone git clone --recursive https://github.com/danini/graph-cut-ransac --depth=1 && cd graph-cut-ransac && git submodule init && git submodule update && mkdir build && cd build && cmake .. && make -j8 && cd .. && rm -rf ~/.cache/pip
 
 # RUN cd DeepLSD/third_party/afm_lib/afm_op; python3 setup.py build_ext --inplace; rm -rf build; cd ..; pip install -e .
 
