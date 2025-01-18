@@ -21,13 +21,13 @@ RUN wget https://github.com/google/glog/archive/refs/tags/v0.4.0.tar.gz && tar -
 
 RUN pip install pybind11 joblib && git clone --recursive https://github.com/cvg/DeepLSD.git --depth=1 && cd DeepLSD && git submodule init && git submodule update && pip install -r requirements.txt && pip install -r requirements.txt && rm -rf ~/.cache/pip
 
-RUN bash -c "cd DeepLSD && cd third_party/progressive-x/graph-cut-ransac/build; cmake ..; make -j8" && bash -c "cd DeepLSD && cd third_party/progressive-x/build; cmake ..; make -j8;" && bash -c "cd DeepLSD && pip install -e third_party/progressive-x" && rm -rf ~/.cache/pip
+# RUN bash -c "cd DeepLSD && cd third_party/progressive-x/graph-cut-ransac/build; cmake ..; make -j8" && bash -c "cd DeepLSD && cd third_party/progressive-x/build; cmake ..; make -j8;" && bash -c "cd DeepLSD && pip install -e third_party/progressive-x" && rm -rf ~/.cache/pip
 
-RUN cd DeepLSD && bash -c "pip install -e line_refinement" && bash -c "pip install -e third_party/homography_est" && bash -c "pip install -e third_party/pytlbd" && bash -c "pip install -e third_party/pytlsd" && bash -c "pip install -e ." && bash -c "pip install kornia==0.6 --no-deps" && rm -rf ~/.cache/pip
+# RUN cd DeepLSD && bash -c "pip install -e line_refinement" && bash -c "pip install -e third_party/homography_est" && bash -c "pip install -e third_party/pytlbd" && bash -c "pip install -e third_party/pytlsd" && bash -c "pip install -e ." && bash -c "pip install kornia==0.6 --no-deps" && rm -rf ~/.cache/pip
 
-RUN echo "cd /DeepLSD/third_party/afm_lib/afm_op; python3 setup.py build_ext --inplace; ; rm -rf build; cd ..; pip install -e ." > ~/afm_install.sh && chmod +x ~/afm_install.sh
+# RUN echo "cd /DeepLSD/third_party/afm_lib/afm_op; python3 setup.py build_ext --inplace; ; rm -rf build; cd ..; pip install -e ." > ~/afm_install.sh && chmod +x ~/afm_install.sh
 
-RUN pip install pytlsd && cd DeepLSD && mkdir weights && wget https://cvg-data.inf.ethz.ch/DeepLSD/deeplsd_wireframe.tar -O weights/deeplsd_wireframe.tar && wget https://cvg-data.inf.ethz.ch/DeepLSD/deeplsd_md.tar -O weights/deeplsd_md.tar
+# RUN pip install pytlsd && cd DeepLSD && mkdir weights && wget https://cvg-data.inf.ethz.ch/DeepLSD/deeplsd_wireframe.tar -O weights/deeplsd_wireframe.tar && wget https://cvg-data.inf.ethz.ch/DeepLSD/deeplsd_md.tar -O weights/deeplsd_md.tar
 
 # RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list' && apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 
