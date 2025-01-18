@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 LABEL maintainer="2592509183@qq.com"
 LABEL description="This is a Docker Image for DeepLSD build."
 
-RUN apt update && apt upgrade -y --no-install-recommends && apt install python3-distutils software-properties-common python3-yaml python3-defusedxml python3-dev python3.8-dev python-dev libceres-dev lsb-core libatlas-base-dev liblapack-dev libblas-dev ninja-build python3.8-dev libgflags-dev libopencv-dev openssl libssl-dev libopencv-contrib-dev libarpack++2-dev libarpack2-dev libsuperlu-dev wget curl git nano build-essential cmake libgflags-dev libunwind-dev libeigen3-dev libgflags-dev libopencv-dev -y --no-install-recommends &&  add-apt-repository ppa:ubuntu-toolchain-r/test && apt install gcc-9 g++-9 -y --no-install-recommends && apt clean && apt autoclean
+RUN apt update && apt upgrade -y --no-install-recommends && apt install python3-distutils software-properties-common python3-defusedxml python3-dev python3.8-dev python-dev libceres-dev lsb-core libatlas-base-dev liblapack-dev libblas-dev ninja-build python3.8-dev libgflags-dev libopencv-dev openssl libssl-dev libopencv-contrib-dev libarpack++2-dev libarpack2-dev libsuperlu-dev wget curl git nano build-essential cmake libgflags-dev libunwind-dev libeigen3-dev libgflags-dev libopencv-dev -y --no-install-recommends &&  add-apt-repository ppa:ubuntu-toolchain-r/test && apt install gcc-9 g++-9 -y --no-install-recommends && apt clean && apt autoclean
 
 # RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py38_22.11.1-1-Linux-x86_64.sh && bash Miniconda3-py38_22.11.1-1-Linux-x86_64.sh -b && rm Miniconda3-py38_22.11.1-1-Linux-x86_64.sh
 
@@ -31,4 +31,4 @@ RUN pip install pytlsd && cd DeepLSD && mkdir weights && wget https://cvg-data.i
 
 RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add - && sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 
-RUN apt update && apt install -y --no-install-recommends ros-melodic-desktop-full python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential && echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc && apt clean && apt autoclean
+RUN apt update && apt install -y --no-install-recommends python3-yaml ros-melodic-desktop-full python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential && echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc && apt clean && apt autoclean
