@@ -13,7 +13,7 @@ RUN ln -s /usr/include/eigen3/Eigen /usr/include/Eigen && ln -s /usr/include/eig
 
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100 && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 100 && update-alternatives --install /usr/bin/python python /usr/bin/python3.8 100 && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3.8 get-pip.py && update-alternatives --install /usr/bin/pip pip /usr/local/bin/pip3.8 100
 
-RUN ln -s /usr/bin/pip3 /usr/bin/pip && pip install torch==1.12.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html && pip install torchvision==0.13.0 && rm -rf ~/.cache/pip
+RUN pip install torch==1.12.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html && pip install torchvision==0.13.0 && rm -rf ~/.cache/pip
 
 RUN wget https://github.com/Kitware/CMake/releases/download/v3.22.0/cmake-3.22.0.tar.gz && tar -xvf cmake-3.22.0.tar.gz && cd cmake-3.22.0 && ./bootstrap && make -j4 && make install && cd .. && rm -rf cmake-3.22.0 cmake-3.22.0.tar.gz
 
