@@ -27,8 +27,10 @@ RUN cd DeepLSD && bash -c "pip install -e line_refinement" && bash -c "pip insta
 
 RUN echo "cd /DeepLSD/third_party/afm_lib/afm_op; python3 setup.py build_ext --inplace; ; rm -rf build; cd ..; pip install -e ." > ~/afm_install.sh && chmod +x ~/afm_install.sh
 
-RUN pip install pytlsd && cd DeepLSD && mkdir weights && wget https://cvg-data.inf.ethz.ch/DeepLSD/deeplsd_wireframe.tar -O weights/deeplsd_wireframe.tar && wget https://cvg-data.inf.ethz.ch/DeepLSD/deeplsd_md.tar -O weights/deeplsd_md.tar
+RUN pip install pytlsd netifaces && cd DeepLSD && mkdir weights && wget https://cvg-data.inf.ethz.ch/DeepLSD/deeplsd_wireframe.tar -O weights/deeplsd_wireframe.tar && wget https://cvg-data.inf.ethz.ch/DeepLSD/deeplsd_md.tar -O weights/deeplsd_md.tar
 
 RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add - && sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 
 RUN apt update && apt install -y --no-install-recommends python3-yaml ros-melodic-desktop-full python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential && echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc && apt clean && apt autoclean
+
+RUN mkdir -p ~/catkin_plvins/src && cd ~/catkin_plvins/ && catkin_make && source devel/setup.bash && cd src && git clone https://github.com/cnqiangfu/PL-VINS.git && cd PL-VINS/feature_tracker && rm CMakeLists.txt && wget https://raw.githubusercontent.com/Jiu-xiao/DeepLSD-Docker/refs/heads/main/CMakeLists.txt && cd ~/catkin_plvins && catkin_make
