@@ -33,4 +33,4 @@ RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt
 
 RUN apt update && apt install -y --no-install-recommends python3-yaml ros-melodic-desktop-full python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential && echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc && apt clean && apt autoclean
 
-RUN bash -c "source ~/.bashrc && mkdir -p ~/catkin_plvins/src && cd ~/catkin_plvins/ && catkin_make && source devel/setup.bash && cd src && git clone https://github.com/cnqiangfu/PL-VINS.git && cd PL-VINS/feature_tracker && rm CMakeLists.txt && wget https://raw.githubusercontent.com/Jiu-xiao/DeepLSD-Docker/refs/heads/main/CMakeLists.txt && cd ~/catkin_plvins && catkin_make"
+RUN bash -c "source ~/.bashrc && . /opt/ros/melodic/setup.bash && mkdir -p ~/catkin_plvins/src && cd ~/catkin_plvins/ && catkin_make && source devel/setup.bash && cd src && git clone https://github.com/cnqiangfu/PL-VINS.git && cd PL-VINS/feature_tracker && rm CMakeLists.txt && wget https://raw.githubusercontent.com/Jiu-xiao/DeepLSD-Docker/refs/heads/main/CMakeLists.txt && cd ~/catkin_plvins && catkin_make"
